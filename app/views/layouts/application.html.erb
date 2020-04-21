@@ -10,8 +10,39 @@
   </head>
 
   <body>
+    <%flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>%" role="alert"><%= value %>
+    <% end %>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+      <div class="container">
+        <%= link_to root_path do %>
+          <span><%=image_tag "icons/logo_transparent.png", class: "navbar-brand" %></span>
+        <% end%>
+
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to 'プロフィール変更', edit_user_registration_path %>
+            </li>
+            <li>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to new_user_registration_path do %>
+                <%= image_tag "icons/register.png" %>
+              <% end %>
+            </li>
+            <li>
+            <%= link_to new_user_session_path do %>
+              <%= image_tag "icons/login.png" %>
+            <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
   </body>
 </html>
