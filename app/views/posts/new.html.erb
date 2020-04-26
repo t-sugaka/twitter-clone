@@ -1,0 +1,20 @@
+<div class="topic-new-wrapper" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="box">
+                    <h2 class="text-center">
+                    <%= form_with model: @post, method: :post do |f|%>
+                        <div class="form-group">
+                            <%= f.label :content %>
+                            <%= f.text_area :content, class: 'form-control' %>
+                        </div>
+
+                        <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
+
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
